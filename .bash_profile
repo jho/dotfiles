@@ -65,3 +65,5 @@ then
     # Load Bash It
     source "$BASH_IT"/bash_it.sh
 fi
+
+export PATH="$HOME/.cargo/bin:$PATH"

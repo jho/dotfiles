@@ -1,11 +1,11 @@
 #!/bin/bash
 
 export PYENV_ROOT=/usr/local/var/pyenv
-export PATH=$PYENV_ROOT/shims:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.1/Contents/Home/bin:~/.npm-global/bin/
-export CLASSPATH=$CLASSPATH:~/.m2/repository/commons-lang/commons-lang/2.3:~/.classpath/
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk/Contents/Home
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.1/Contents/Home
+export PATH=$PYENV_ROOT/shims:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin
+export CLASSPATH=$CLASSPATH:~/.m2/repository/commons-lang/commons-lang/2.3:~/.classpath/
 export MAVEN_OPTS="-Xmx1024m -Djava.awt.headless=true" #-javaagent:/opt/jrebel/jrebel.jar"
 export SCALA_HOME=/opt/scala
 export GRADLE_HOME=/opt/gradle
@@ -94,6 +94,17 @@ function kill_esets() {
 
 function iso_date() {
     date $@ -u +%FT%T%z 
+}
+
+ssh () {
+  if test `find ~/.ssh/id_rsa-cert.pub -newermt '14 minutes ago'`
+  then
+    echo "Using cached certificate"
+  else
+    docker run -it -v ~/.ssh:/ssh -v ~/.vault-auth:/root/.vault-mount gitlab.int.protectwise.net:8042/engineering/infrastructure/vault-ssh-authentication/vault-auth:latest bash -c "vault-ca-ssh josh"
+  fi
+
+  /usr/bin/ssh -i ~/.ssh/id_rsa-cert.pub $@
 }
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
