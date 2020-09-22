@@ -17,3 +17,6 @@ ln -s ~/.dotfiles/.vimrc ~/.vimrc
 
 rm -rf ~/.gitconfig
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+
+rm -rf ~/.zshrc
+ln -s ~/.dotfiles/.zshrc ~/.zshrc
