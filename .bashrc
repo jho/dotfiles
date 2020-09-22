@@ -34,15 +34,11 @@ alias xmlpost='curl -H "Content-Type: text/xml" -v -d "`cat $1`" -X POST $2'
 
 alias gsa='find . -type d -maxdepth 1 | xargs -I{} sh -c "echo {}; cd {}; git status | grep modified || true"'
 
-case "$TERM" in
-  screen) export PS1='\[\033k\033\\\]\u@\h:\w\$ ';;
-esac
-
 alias ls='ls -GCF'
 
 set -o vi
 
-shopt -s extglob
+#shopt -s extglob
 
 alias lg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
