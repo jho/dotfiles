@@ -19,6 +19,12 @@ ln -s ~/.dotfiles/.bash_profile ~/.bash_profile
 rm -rf ~/.tmux.conf
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 
+rm -rf ~/.tmux
+ln -s ~/.dotfiles/.tmux ~/.tmux
+
+rm -rf ~/.tmux-powerlinerc
+ln -s ~/.dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
+
 rm -rf ~/.vim
 ln -s ~/.dotfiles/.vim ~/.vim
 
