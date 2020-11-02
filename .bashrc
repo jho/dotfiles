@@ -26,6 +26,8 @@ export PATH=$PATH:/usr/local/texlive/2011/bin/x86_64-darwin/
 export PW_TEST_ENV=staging
 export PW_TEST_LIB=/Users/jho/dev/system_test
 
+export SBT_NATIVE_CLIENT=true
+
 export COURSIER_REPOSITORIES="ivy2Local|central|sonatype:releases|jitpack|https://nexus.int.protectwise.net/content/repositories/releases/"
 
 alias mvnskiptest='mvn -Dmaven.test.skip=true'
