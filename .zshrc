@@ -109,5 +109,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+set -o vi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
