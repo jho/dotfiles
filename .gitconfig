@@ -186,4 +186,9 @@
 
 	insteadOf = "gist:"
 [user]
-	email = jholla14@gmail.com
+	email = jhollander@pax8.com
+	name = jhollanderpax8
+[pull]
+	rebase = true
+[fetch]
+	prune = true

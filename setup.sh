@@ -1,20 +1,15 @@
 #!/bin/bash
 
 #TODO: put any other missing software installation steps here
-#/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-#sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-#echo "source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
-#brew install powerlevel9k
-#brew install tmux?
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-#https://github.com/erikw/tmux-powerline
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 rm -rf ~/.bashrc
 ln -s ~/.dotfiles/.bashrc ~/.bashrc
 
 rm -rf ~/.bash_profile
 ln -s ~/.dotfiles/.bash_profile ~/.bash_profile
-
 
 rm -rf ~/.tmux.conf
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
@@ -43,3 +38,4 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
+#curl -s "https://get.sdkman.io" | bash
