@@ -9,7 +9,6 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-source ~/.bashrc
 
 export ZSH="/Users/jho/.oh-my-zsh"
 
@@ -113,11 +112,7 @@ bindkey -v
 bindkey '^R' history-incremental-search-backward
 set -o vi
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-[[ -s "$HOME/.private.sh" ]] && source "$HOME/.private.sh"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/.bashrc
