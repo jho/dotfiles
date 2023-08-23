@@ -78,6 +78,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
+plugins=(gnu-utils)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,4 +117,9 @@ set -o vi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export AWS_PROFILE=sso
+plugins+=(pax8)
+source /Users/jho/.oh-my-zsh/oh-my-zsh.sh
+
 source ~/.bashrc
+
