@@ -117,30 +117,26 @@ def main():
     parser.add_argument("-m", "--message", help="Comment message for the Pull Request or Commit", default="")
     args = parser.parse_args()
 
-    try:
-        # Determine the GitHub repository information
-        REPO_OWNER, REPO_NAME = get_github_repo_info()
-        
-        # Use the GitHub API token from the environment variable
-        GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-        if not GITHUB_TOKEN:
-            raise Exception("GitHub token not found in the environment variable $GITHUB_TOKEN")
-        
-        # Make changes to the code as needed
-        # You can use subprocess to run commands to modify files in your project
-        
-        # Commit your changes
-        subprocess.run(["git", "add", "."])
-        subprocess.run(["git", "commit", "-m", args.message])
-        
-        # Push the current branch to GitHub
-        current_branch = subprocess.check_output(["git", "branch", "--show-current"]).decode("utf-8").strip()
-        
-        # Create or update the PR
-        create_or_update_pr(REPO_OWNER, REPO_NAME, GITHUB_TOKEN, current_branch, BASE_BRANCH, args.message)
-        
-    except Exception as e:
-        print(f"Error: {str(e)}")
+    # Determine the GitHub repository information
+    REPO_OWNER, REPO_NAME = get_github_repo_info()
+    
+    # Use the GitHub API token from the environment variable
+    GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+    if not GITHUB_TOKEN:
+        raise Exception("GitHub token not found in the environment variable $GITHUB_TOKEN")
+    
+    # Make changes to the code as needed
+    # You can use subprocess to run commands to modify files in your project
+    
+    # Commit your changes
+    subprocess.run(["git", "add", "."])
+    subprocess.run(["git", "commit", "-m", args.message])
+    
+    # Push the current branch to GitHub
+    current_branch = subprocess.check_output(["git", "branch", "--show-current"]).decode("utf-8").strip()
+    
+    # Create or update the PR
+    create_or_update_pr(REPO_OWNER, REPO_NAME, GITHUB_TOKEN, current_branch, BASE_BRANCH, args.message)
 
 if __name__ == "__main__":
     main()
