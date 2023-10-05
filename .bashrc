@@ -3,7 +3,7 @@
 export PYENV_ROOT=/usr/local/var/pyenv
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-19.2.1/Contents/Home
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
-export PATH=$PATH:$PYENV_ROOT/shims:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/usr/local/texlive/2011/bin/x86_64-darwin/:$HOME/.bin/:/usr/local/opt/kafka/bin:/usr/local/sbin
+export PATH=$PATH:~/.dotfiles/bin:$PYENV_ROOT/shims:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/usr/local/texlive/2011/bin/x86_64-darwin/:$HOME/.bin/:/usr/local/opt/kafka/bin:/usr/local/sbin
 export SCALA_HOME=/opt/scala
 export GRADLE_HOME=/opt/gradle:$HOME/.bin/
 export EDITOR=/usr/bin/vi
@@ -28,6 +28,17 @@ alias gsa='find . -type d -maxdepth 1 | xargs -I{} sh -c "echo {}; cd {}; git st
 
 alias lg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
+alias commit=prme
+
+function shuv() { git commit -am "${1:-x}"; git push }
+
+function shunt() { 
+    git branch "${1}" &&
+    git checkout main &&
+    git reset --hard HEAD~${2:-1} &&
+    git checkout "${1}"
+}
+
 function iso_date() {
     date $@ -u +%FT%T%z 
 }
@@ -48,5 +59,13 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.private.sh" ]] && source "$HOME/.private.sh"
 
 alias ls='gls -GCF --group-directories-first --color'
+
+function dstop() {
+    docker ps | grep $1 | awk '{print $1}' | xargs docker stop
+}
+
+function gcleanup() {
+     git fetch -p && for branch in $(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}' ); do git branch -D $branch; done
+}
 
 set -o vi
