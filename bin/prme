@@ -33,15 +33,16 @@ def get_github_repo_info():
 
 def create_or_update_pr(owner, repo_name, github_token, current_branch, base_branch, title, body=""):
     # Check if there's an existing PR with the same head and base branches
-    pr_exists = check_existing_pr(owner, repo_name, github_token, current_branch, base_branch)
-    
-    if pr_exists:
-        # If an existing PR exists, simply push changes and check its current state
-        subprocess.run(["git", "push", "origin", current_branch])
-        check_pr_status(owner, repo_name, github_token, current_branch)
-    else:
-        # If no existing PR, create a new one
-        create_new_pr(owner, repo_name, github_token, current_branch, base_branch, title, body)
+    if current_branch is not "main":
+        pr_exists = check_existing_pr(owner, repo_name, github_token, current_branch, base_branch)
+        
+        if pr_exists:
+            # If an existing PR exists, simply push changes and check its current state
+            subprocess.run(["git", "push", "origin", current_branch])
+            check_pr_status(owner, repo_name, github_token, current_branch)
+        else:
+            # If no existing PR, create a new one
+            create_new_pr(owner, repo_name, github_token, current_branch, base_branch, title, body)
 
 def check_existing_pr(owner, repo_name, github_token, head_branch, base_branch):
     url = f"https://api.github.com/repos/{owner}/{repo_name}/pulls"
