@@ -81,8 +81,7 @@ def create_new_pr(owner, repo_name, github_token, head_branch, base_branch, titl
         print(f"PR created: {pr_number}")
         check_pr_status(owner, repo_name, github_token, head_branch)
     else:
-        print(response)
-        print("No PR created... commiting to 'main'?")
+        print(f"PR not created! {response.status}")
 
 def check_pr_status(owner, repo_name, github_token, head_branch):
     # Check the status of GitHub Actions runs associated with the PR
