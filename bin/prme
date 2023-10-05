@@ -33,7 +33,7 @@ def get_github_repo_info():
 
 def create_or_update_pr(owner, repo_name, github_token, current_branch, base_branch, title, body=""):
     # Check if there's an existing PR with the same head and base branches
-    if current_branch is not "main":
+    if current_branch != "main":
         pr_exists = check_existing_pr(owner, repo_name, github_token, current_branch, base_branch)
         
         if pr_exists:
