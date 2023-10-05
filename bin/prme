@@ -72,10 +72,11 @@ def create_new_pr(owner, repo_name, github_token, head_branch, base_branch, titl
     }
     response = requests.post(url, headers=headers, json=data)
     pr_data = response.json()
-    pr_number = pr_data["number"]
+    if "number" in pr_data:
+        pr_number = pr_data["number"]
     
-    print(f"PR created: {pr_number}")
-    check_pr_status(owner, repo_name, github_token, head_branch)
+        print(f"PR created: {pr_number}")
+        check_pr_status(owner, repo_name, github_token, head_branch)
 
 def check_pr_status(owner, repo_name, github_token, head_branch):
     # Check the status of GitHub Actions runs associated with the PR
