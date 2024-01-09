@@ -30,7 +30,7 @@ alias lg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold bl
 
 alias commit=prme
 
-function shuv() { git commit -am "${1:-x}"; git push }
+function shuv() { prme -m "${1:-x}" }
 
 function shunt() { 
     git branch "${1}" &&
