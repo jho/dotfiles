@@ -32,6 +32,9 @@ ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 rm -rf ~/.zshrc
 ln -s ~/.dotfiles/.zshrc ~/.zshrc
 
+rm -rf ~/.zshenv
+ln -s ~/.dotfiles/.zshenv ~/.zshenv
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #git clone https://github.com/erikw/tmux-powerline.git ~/.tmux

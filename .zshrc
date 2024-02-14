@@ -122,4 +122,3 @@ plugins+=(pax8)
 source /Users/jho/.oh-my-zsh/oh-my-zsh.sh
 
 source ~/.bashrc
-

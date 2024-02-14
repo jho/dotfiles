@@ -33,11 +33,11 @@ def get_github_repo_info():
 def create_or_update_pr(owner, repo_name, github_token, current_branch, base_branch, title, body=""):
     # Check if there's an existing PR with the same head and base branches
     if current_branch != "main" and current_branch != "master":
-        pr_exists = check_existing_pr(owner, repo_name, github_token, current_branch, base_branch)
+        pr_number = check_existing_pr(owner, repo_name, github_token, current_branch, base_branch)
         
         subprocess.run(["git", "push", "origin", current_branch])
-        if pr_exists:
-            print(f"PR exists for '{current_branch}'")
+        if pr_number:
+            print(f"PR exists for '{current_branch}': https://github.com/{owner}/{repo_name}/pull/{pr_number}")
             # If an existing PR exists, simply push changes and check its current state
             check_pr_status(owner, repo_name, github_token, current_branch)
         else:
@@ -58,10 +58,11 @@ def check_existing_pr(owner, repo_name, github_token, head_branch, base_branch):
     }
     response = requests.get(url, headers=headers, params=params)
     pr_data = response.json()
-    if response.status_code != 200:
+    if response.status_code != 200 or len(pr_data) <= 0:
         print(f"Can't find existing PR: {response.status_code}", file=sys.stderr)
         return False
-    return len(pr_data) > 0
+    number = pr_data[0]['number']
+    return number
 
 def create_new_pr(owner, repo_name, github_token, head_branch, base_branch, title, body=""):
     url = f"https://api.github.com/repos/{owner}/{repo_name}/pulls"
@@ -79,10 +80,10 @@ def create_new_pr(owner, repo_name, github_token, head_branch, base_branch, titl
     if "number" in pr_data:
         pr_number = pr_data["number"]
     
-        print(f"PR created: {pr_number}")
+        print(f"PR created: https://github.com/{owner}/{repo_name}/pull/{pr_number}")
         check_pr_status(owner, repo_name, github_token, head_branch)
     else:
-        print(f"PR not created for: '{owner}/{repo_name}' from '{head_branch}' to '{base_branch}': {response.status_code}", file=sys.stderr)
+        print(f"PR not created for: '{owner}/{repo_name}' from '{head_branch}' to '{base_branch}': {response.status_code} {response.json()['message']}", file=sys.stderr)
 
 def check_pr_status(owner, repo_name, github_token, head_branch):
     # Check the status of GitHub Actions runs associated with the PR
