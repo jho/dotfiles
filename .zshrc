@@ -16,7 +16,7 @@ export ZSH="/Users/jho/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#SH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -78,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
-plugins=(gnu-utils)
+#plugins=(gnu-utils)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -118,7 +118,6 @@ set -o vi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export AWS_PROFILE=sso
-plugins+=(pax8)
-source /Users/jho/.oh-my-zsh/oh-my-zsh.sh
+#plugins+=(pax8)
 
 source ~/.bashrc

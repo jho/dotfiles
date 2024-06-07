@@ -137,14 +137,23 @@ def main():
     # You can use subprocess to run commands to modify files in your project
     
     # Commit your changes
+    base_branch = BASE_BRANCH
+    res = subprocess.run(
+        ["git", "rev-parse", "--verify", f"refs/heads/${BASE_BRANCH}"],  
+        stdout = subprocess.DEVNULL,
+        stderr = subprocess.DEVNULL
+    )
+    if res:
+        base_branch = "master"
     subprocess.run(["git", "add", "."])
-    subprocess.run(["git", "commit", "-m", args.message])
-    
-    # Push the current branch to GitHub
-    current_branch = subprocess.check_output(["git", "branch", "--show-current"]).decode("utf-8").strip()
-    
-    # Create or update the PR
-    create_or_update_pr(REPO_OWNER, REPO_NAME, GITHUB_TOKEN, current_branch, BASE_BRANCH, args.message)
+    res = subprocess.run(["git", "commit", "-m", args.message])
+   
+    if res != 0: 
+        # Push the current branch to GitHub
+        current_branch = subprocess.check_output(["git", "branch", "--show-current"]).decode("utf-8").strip()
+        
+        # Create or update the PR
+        create_or_update_pr(REPO_OWNER, REPO_NAME, GITHUB_TOKEN, current_branch, base_branch, args.message)
 
 if __name__ == "__main__":
     main()

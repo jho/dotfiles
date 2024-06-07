@@ -28,6 +28,7 @@ set showmode showcmd ruler
 au FileType ruby setl shiftwidth=2 tabstop=2 nowrap
 au FileType scala setl shiftwidth=2 tabstop=2 nowrap
 au FileType xml setl shiftwidth=2 tabstop=2 nowrap
+au FileType yaml setl shiftwidth=2 tabstop=2 nowrap
 au FileType sbt.scala setl shiftwidth=2 tabstop=2 nowrap
 au FileType yaml setl shiftwidth=2 tabstop=2 nowrap
 au FileType javascript setl shiftwidth=2 tabstop=2 nowrap
