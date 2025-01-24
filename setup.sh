@@ -35,6 +35,9 @@ ln -s ~/.dotfiles/.zshrc ~/.zshrc
 rm -rf ~/.zshenv
 ln -s ~/.dotfiles/.zshenv ~/.zshenv
 
+rm -rf ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/.dotfiles/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #git clone https://github.com/erikw/tmux-powerline.git ~/.tmux

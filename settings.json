@@ -1,0 +1,41 @@
+{
+    "application.shellEnvironmentResolutionTimeout": 30,
+    "editor.minimap.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "vim.vimrc.enable": true,
+    "sql-formatter.uppercase": true,
+    "workbench.settings.applyToAllProfiles": [
+        "sql-formatter.uppercase"
+    ],
+    "[*]": {
+        "editor.tabSize": 4
+    },
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[kotlin]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "cstef.kotlin-formatter",
+        "editor.formatOnSave": false
+    },
+    "[kotlinscript]": {
+        "editor.defaultFormatter": "cstef.kotlin-formatter"
+    },
+    "editor.indentSize": "tabSize",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "editor.tabSize": 2,
+    "[markdown]": {
+        "editor.detectIndentation": false
+    },
+    "terraform.languageServer.tcp.port": 0,
+    "jupyter.askForKernelRestart": false,
+    "workbench.colorTheme": "Default Dark+",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "kotlin-formatter.ktlintPath": "/usr/local/bin/ktlint"
+}

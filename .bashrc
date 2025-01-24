@@ -53,6 +53,10 @@ function iso_date() {
     date $@ -u +%FT%T%z 
 }
 
+function kill_zombies() {
+    pmset -g assertions | egrep -A 1 "PreventUserIdleSystemSleep named" | grep "Created for PID" | grep -o '[0-9]*' | xargs kill -9 
+}
+
 eval "$(pyenv init --path)"
 
 export LS_COLORS="fi=01;37:di=01;34:ex=01;32:ln=37\
@@ -71,7 +75,15 @@ export SDKMAN_DIR="$HOME/.sdkman"
 alias ls='gls -GCF --group-directories-first --color'
 
 function dstop() {
-    docker ps | grep $1 | awk '{print $1}' | xargs docker stop
+    if [[ $# -eq 0 ]]; then
+        docker stop $(docker ps -q)
+    else   
+        docker ps | grep $1 | awk '{print $1}' | xargs docker stop
+    fi
+}
+
+function dkill() {
+    dstop $1
 }
 
 function gcleanup() {
