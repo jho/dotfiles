@@ -35,7 +35,7 @@ def create_or_update_pr(owner, repo_name, github_token, current_branch, base_bra
     if current_branch != "main" and current_branch != "master":
         pr_number = check_existing_pr(owner, repo_name, github_token, current_branch, base_branch)
         
-        subprocess.run(["git", "push", "origin", current_branch])
+        subprocess.run(["git", "push", "-u", "origin", current_branch])
         if pr_number:
             print(f"PR exists for '{current_branch}': https://github.com/{owner}/{repo_name}/pull/{pr_number}")
             # If an existing PR exists, simply push changes and check its current state
@@ -146,15 +146,24 @@ def main():
     )
     if res == 0:
         base_branch = "master"
+
+    # Check if we're on a protected branch
+    current_branch = subprocess.check_output(["git", "branch", "--show-current"]).decode("utf-8").strip()
+    if current_branch in ["main", "master"]:
+        print(f"Error: Cannot commit directly to {current_branch}. Please create a feature branch.", file=sys.stderr)
+        sys.exit(1)
+
     subprocess.run(["git", "add", "."])
     res = subprocess.run(["git", "commit", "-m", args.message])
    
-    if res != 0: 
+    if res.returncode == 0: 
         # Push the current branch to GitHub
         current_branch = subprocess.check_output(["git", "branch", "--show-current"]).decode("utf-8").strip()
         
         # Create or update the PR
         create_or_update_pr(REPO_OWNER, REPO_NAME, GITHUB_TOKEN, current_branch, base_branch, args.message)
+    else:
+        sys.exit(res.returncode)
 
 if __name__ == "__main__":
     main()

@@ -36,7 +36,9 @@ rm -rf ~/.zshenv
 ln -s ~/.dotfiles/.zshenv ~/.zshenv
 
 rm -rf ~/Library/Application\ Support/Code/User/settings.json
+rm -rf ~/Library/Application\ Support/Code/Cursor/settings.json
 ln -s ~/.dotfiles/settings.json ~/Library/Application\ Support/Code/User/settings.json
+ln -s ~/.dotfiles/settings.json ~/Library/Application\ Support/Cusor/User/settings.json
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
