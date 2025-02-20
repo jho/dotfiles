@@ -44,6 +44,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #git clone https://github.com/erikw/tmux-powerline.git ~/.tmux
 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+#git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+curl -sS https://starship.rs/install.sh | sh
+
+starship preset no-runtime-versions -o ~/.config/starship.toml
 
 #curl -s "https://get.sdkman.io" | bash
