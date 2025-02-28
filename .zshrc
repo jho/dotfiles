@@ -123,3 +123,5 @@ export AWS_PROFILE=sso
 #plugins+=(pax8)
 
 source ~/.bashrc
+
+. "$HOME/.local/bin/env"

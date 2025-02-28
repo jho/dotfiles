@@ -5,6 +5,8 @@
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+brew install --cask font-meslo-lg-nerd-font
+
 rm -rf ~/.bashrc
 ln -s ~/.dotfiles/.bashrc ~/.bashrc
 

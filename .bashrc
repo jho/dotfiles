@@ -91,3 +91,5 @@ function gcleanup() {
 }
 
 set -o vi
+
+. "$HOME/.local/bin/env"
