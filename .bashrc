@@ -1,7 +1,6 @@
 # !/bin/bash
 
-export PYENV_ROOT=/usr/local/var/pyenv
-export PATH=$PATH:~/.dotfiles/bin:$PYENV_ROOT/shims:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/usr/local/texlive/2011/bin/x86_64-darwin/:$HOME/.bin/:/usr/local/opt/kafka/bin:/usr/local/sbin
+export PATH=$PATH:~/.dotfiles/bin:$PYENV_ROOT/shims:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/usr/local/texlive/2011/bin/x86_64-darwin/:$HOME/.bin/:/usr/local/opt/kafka/bin:/usr/local/sbin:/opt/homebrew/bin/
 export SCALA_HOME=/opt/scala
 export GRADLE_HOME=/opt/gradle:$HOME/.bin/
 export EDITOR=/usr/bin/vi
