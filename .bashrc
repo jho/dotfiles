@@ -39,7 +39,7 @@ alias lg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold bl
 
 alias commit=prme
 
-function shuv() { prme -m "${1:-x}" }
+function shuv() { prme "$@" }
 
 function shunt() { 
     git branch "${1}" &&
