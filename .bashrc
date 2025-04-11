@@ -1,6 +1,6 @@
 # !/bin/bash
 
-export PATH=$PATH:~/.dotfiles/bin:$PYENV_ROOT/shims:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/usr/local/texlive/2011/bin/x86_64-darwin/:$HOME/.bin/:/usr/local/opt/kafka/bin:/usr/local/sbin:/opt/homebrew/bin/
+export PATH=$PATH:~/.dotfiles/bin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/opt/maven/bin:~/.bin:/opt/gradle/bin:/opt/play:/opt/spark/bin:/opt/graalvm/bin:$JAVA_HOME/bin:$JAVA_HOME/jre/languages/js/bin/:~/.npm-global/bin/:$HOME/.cargo/bin:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin:/usr/local/texlive/2011/bin/x86_64-darwin/:$HOME/.bin/:/usr/local/opt/kafka/bin:/usr/local/sbin:/opt/homebrew/bin/
 export SCALA_HOME=/opt/scala
 export GRADLE_HOME=/opt/gradle:$HOME/.bin/
 export EDITOR=/usr/bin/vi
@@ -56,7 +56,9 @@ function kill_zombies() {
     pmset -g assertions | egrep -A 1 "PreventUserIdleSystemSleep named" | grep "Created for PID" | grep -o '[0-9]*' | xargs kill -9 
 }
 
-eval "$(pyenv init --path)"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 export LS_COLORS="fi=01;37:di=01;34:ex=01;32:ln=37\
 :or=01;30:mi=00:mh=31\
